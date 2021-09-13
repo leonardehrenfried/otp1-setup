@@ -1,0 +1,5 @@
+*.jar
+osm.pbf
+*.zip
+Graph.obj
+streetGraph.obj
