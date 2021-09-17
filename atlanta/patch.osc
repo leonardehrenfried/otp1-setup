@@ -1,0 +1,45 @@
+<osmChange version="0.6" generator="acme osm editor">
+  <way id="849819590" visible="true" version="2" changeset="91236533" timestamp="2020-09-21T14:56:02Z" user="Keyinsilence" uid="7523713">
+    <nd ref="7928517768"/>
+    <nd ref="7928517770"/>
+    <nd ref="318456685"/>
+    <nd ref="5602335125"/>
+    <nd ref="69167153"/>
+    <tag k="change:lanes" v="no|no|not_left|yes"/>
+    <tag k="highway" v="secondary"/>
+    <tag k="lanes" v="4"/>
+    <tag k="name" v="Capitol Avenue Southeast"/>
+    <tag k="name_1" v="Hank Aaron Drive Southeast"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="tiger:cfcc" v="A41"/>
+    <tag k="tiger:county" v="Fulton, GA"/>
+    <tag k="tiger:name_base" v="Capitol"/>
+    <tag k="tiger:name_base_1" v="Hank Aaron"/>
+    <tag k="tiger:name_direction_suffix" v="SE"/>
+    <tag k="tiger:name_direction_suffix_1" v="SE"/>
+    <tag k="tiger:name_type" v="Ave"/>
+    <tag k="tiger:name_type_1" v="Dr"/>
+    <tag k="tiger:reviewed" v="no"/>
+    <tag k="turn:lanes" v="left|left||"/>
+  </way>
+  <way id="9254841" visible="true" version="6" changeset="95372489" timestamp="2020-12-06T16:28:16Z" user="Keyinsilence" uid="7523713">
+    <nd ref="69168677"/>
+    <nd ref="8199166021"/>
+    <nd ref="69341100"/>
+    <nd ref="7850137822"/>
+    <nd ref="6016047040"/>
+    <nd ref="69341102"/>
+    <tag k="highway" v="residential"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="name" v="Hogue Street Northeast"/>
+    <tag k="tiger:cfcc" v="A41"/>
+    <tag k="tiger:county" v="Fulton, GA"/>
+    <tag k="tiger:name_base" v="Hogue"/>
+    <tag k="tiger:name_direction_suffix" v="NE"/>
+    <tag k="tiger:name_type" v="St"/>
+    <tag k="tiger:reviewed" v="no"/>
+    <tag k="tiger:zip_left" v="30312"/>
+    <tag k="tiger:zip_right" v="30312"/>
+  </way>
+</osmChange>
