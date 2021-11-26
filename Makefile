@@ -21,6 +21,12 @@ atlanta/osm-tiny-stripped-patched.pbf: atlanta/osm-tiny-stripped.pbf
 atlanta/gtfs.zip:
 	${CURL} https://leonard.io/ibi/marta.blue-line-accessible.gtfs.zip -o $@
 
+canton/osm.pbf: georgia/osm.pbf
+	osmium extract georgia/osm.pbf --polygon canton/canton.geojson -o $@
+
+canton/gtfs.zip:
+	${CURL} https://leonard.io/ibi/cats-2.gtfs.zip -o $@
+
 build-%: otp.jar %/osm.pbf %/gtfs.zip
 	java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 -Xmx12G -jar otp.jar --build $*
 
