@@ -1,0 +1,545 @@
+
+{
+  // Routing defaults are any public field or setter in the Java class
+  // org.opentripplanner.routing.core.RoutingRequest
+  routingDefaults: {
+    maxHours: 6,
+    useRequestedDateTimeInMaxHours: true,
+    boardSlack: 0,
+    alightSlack: 0,
+    transferSlack: 180,
+    maxTransfers: 4,
+    waitReluctance: 0.9,
+    walkReluctance: 1.75,
+    stairsReluctance: 1.65,
+    numItineraries: 3,
+    disableAlertFiltering: true
+  },
+  "requestLogFile": "/var/otp/request.log",
+  "updaters": [
+    {
+      "type": "bike-rental",
+      "sourceType": "gbfs",
+      "network": "CITIBIKE",
+      "url": "https://gbfs.citibikenyc.com/gbfs",
+      "frequencySec": 30
+    },
+    {
+      "type": "bike-rental",
+      "frequencySec": 30,
+      "sourceType": "gbfs",
+      "network": "HOPR",
+      "url": "https://gbfs.hopr.city/api/gbfs/32/"
+    },
+    {
+      "type": "bike-rental",
+      "sourceType": "gbfs",
+      "network": "LIME",
+      "url": "https://data.lime.bike/api/partners/v1/gbfs/new_york",
+      "frequencySec": 30
+    },
+    {
+      "type": "bike-rental",
+      "sourceType": "gbfs",
+      "network": "REDDY",
+      "url": "https://reddybikeshare.socialbicycles.com/opendata",
+      "frequencySec": 30
+    },
+    {
+      "type": "stop-time-updater",
+      "frequencySec": 30,
+      "url": "http://gtfsrealtime.suffolkcountyny.gov:8080/gtfsrealtime/TripUpdates",
+      "sourceType": "gtfs-http",
+      "feedId": "56"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "1",
+      "name": "Access Allegany",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-AccessAllegany-Allegany-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "2",
+      "name": "Airtrain JFK",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-JA.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "3",
+      "name": "Birnie Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-BC.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "4",
+      "name": "Bronx Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "5",
+      "name": "Brooklyn Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "6",
+      "name": "Broome County Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-4464.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "7",
+      "name": "CDTA",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-1.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "8",
+      "name": "Centro",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-Centro.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "9",
+      "name": "Chemung C Tran",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-C-TRAN-Chemung-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "10",
+      "name": "Chenango First Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-CHFT-chenango-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "11",
+      "name": "City of Mechanicville Public Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-CMT-Mechanicville-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "12",
+      "name": "Clarkstown Mini Trans",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-ClarkstownMiniTrans-Rockland-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "13",
+      "name": "Clinton County Public Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-CCPT-Clinton-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "14",
+      "name": "Corning Erwin Area Transit System (CEATS)",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-CEATS-Steuben-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "15",
+      "name": "CT Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-google-wa-me_transit.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "16",
+      "name": "CT Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-googleha_transit.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "17",
+      "name": "CT Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-googlenb_transit.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "18",
+      "name": "CT Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-googlenh_transit.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "19",
+      "name": "CT Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-googlestam_transit.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "20",
+      "name": "Dutchess County Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-DCPT-Dutchess-NY-US.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "21",
+      "name": "Franklin County Public Transportation",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-FranklinCOPT-Franklin-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "22",
+      "name": "Gloversville Transit Services",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-GTS-Fulton-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "23",
+      "name": "Greater Glens Falls Transit System",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-GGFT-Warren-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "24",
+      "name": "HART Huntington Area Rapid Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-HART.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "25",
+      "name": "Hartford Line",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-hartford-line.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "26",
+      "name": "Hornell Area Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-HATSteuben-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "27",
+      "name": "Lake Champlain Ferry",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-789.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "28",
+      "name": "Lewis County",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-LCPT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "29",
+      "name": "Long Island Rail Road",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-LI.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "30",
+      "name": "Lower Hudson Transit Link",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-LHTL.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "31",
+      "name": "Manhattan Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "32",
+      "name": "Metro-North Railroad",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-1.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "33",
+      "name": "MTA Bus Company",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTABC.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "34",
+      "name": "MTA NYC Subway Accessible",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "35",
+      "name": "Nassau Inter-County Express",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-LIBUS.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "36",
+      "name": "NFTA - Metro",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MET.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "37",
+      "name": "NJ TRANSIT BUS",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-NJB.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "38",
+      "name": "NJ TRANSIT Rail",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-NJT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "39",
+      "name": "North Country Express",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-NCET-Clinton-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "40",
+      "name": "NY Waterway",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-NYW.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "41",
+      "name": "NYC Ferry",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-1.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "42",
+      "name": "Olean Area Transit System",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-OATS-Cattaraugus-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "43",
+      "name": "Oneida County Rural Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-HOCTS.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "44",
+      "name": "Otsego Express Public Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-OEPT-Otsego-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "45",
+      "name": "Port Authority Trans-Hudson Corporation",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-151.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "46",
+      "name": "Queens Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "47",
+      "name": "Rensselaer County Yankee Trails",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-RCYT-Rensselaer-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "48",
+      "name": "Rochester-Genesee Regional Transportation Authority",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-RGRTA.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "49",
+      "name": "RTS-Seneca",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-RTS-Seneca-NY-US.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "50",
+      "name": "RTS-Wyoming",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-RTS-WYOMING-NY-US.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "51",
+      "name": "Schuyler County Public Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-SCPT-Schuyler-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "52",
+      "name": "Shore Line East",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-SLE.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "53",
+      "name": "Staten Island Bus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-MTA NYCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "54",
+      "name": "Steuben Area Rides",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-SCT-Steuben-NY-US.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "55",
+      "name": "Steuben County Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-SAR-Steuben-NY-US.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "56",
+      "name": "Suffolk Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-SCT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "57",
+      "name": "TCAT Tompkins Consolidated Area Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-0.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "58",
+      "name": "UCAT Ulster County Area Transit",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-72.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "59",
+      "name": "Watertown Citibus",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-WatertownCitibus-Jefferson-ny-us.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "60",
+      "name": "Westchester County Bee-Line System",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-WCDOT.pb"
+    },
+    {
+      "type": "real-time-alerts",
+      "frequencySec": 600,
+      "earlyStart": 864000,
+      "feedId": "61",
+      "name": "Yates Transit Service",
+      "url": "https://datatools-511ny.s3.amazonaws.com/gtfs-rt-alerts/alerts-yates-ny-us.pb"
+    }
+  ]
+}
+

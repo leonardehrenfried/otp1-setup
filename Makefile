@@ -7,19 +7,25 @@ georgia/osm.pbf:
 	${CURL} https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf -o $@
 
 atlanta-tiny/osm.pbf: georgia/osm.pbf
-	osmium extract georgia/osm.pbf --polygon atlanta/atlanta.geojson -o $@
+	osmium extract georgia/osm.pbf --polygon atlanta-tiny/atlanta.geojson -o $@
 
 atlanta-tiny/osm-tiny.pbf: georgia/osm.pbf
-	osmium extract georgia/osm.pbf --polygon atlanta/central-atlanta-blue-line.geojson -o $@
+	osmium extract georgia/osm.pbf --polygon atlanta-tiny/central-atlanta-blue-line.geojson -o $@
 
-atlanta-tiny/osm-tiny-stripped.pbf: atlanta/osm-tiny.pbf
+atlanta-tiny/osm-tiny-stripped.pbf: atlanta-tiny/osm-tiny.pbf
 	osmium tags-filter atlanta/osm-tiny.pbf w/highway w/public_transport=platform w/railway=platform w/park_ride=yes r/type=restriction r/type=route -o $@ -f pbf,add_metadata=true
 
-atlanta-tiny/osm-tiny-stripped-patched.pbf: atlanta/osm-tiny-stripped.pbf
+atlanta-tiny/osm-tiny-stripped-patched.pbf: atlanta-tiny/osm-tiny-stripped.pbf
 	osmium apply-changes --output=$@ atlanta/osm-tiny-stripped.pbf atlanta/patch.osc
 
 atlanta-tiny/gtfs.zip:
 	${CURL} https://leonard.io/ibi/marta.blue-line-accessible.gtfs.zip -o $@
+
+atlanta/osm.pbf: georgia/osm.pbf
+	osmium extract georgia/osm.pbf --polygon atlanta/atlanta.geojson -o $@
+
+atlanta/gtfs.zip: atlanta/osm.pbf
+	${CURL} https://itsmarta.com/google_transit_feed/google_transit.zip -o $@
 
 canton/osm.pbf: georgia/osm.pbf
 	osmium extract georgia/osm.pbf --polygon canton/canton.geojson -o $@

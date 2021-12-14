@@ -1,0 +1,10 @@
+{
+  "htmlAnnotations": true,
+  "stationTransfers": null,
+  "subwayAccessTime": null,
+  "fares": null,
+  "includeEllipsoidToGeoidDifference": true,
+  "readCachedElevations": true,
+  "writeCachedElevations": false,
+  "multiThreadElevationCalculations": true
+}
