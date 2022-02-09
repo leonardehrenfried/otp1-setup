@@ -1,7 +1,25 @@
 .PRECIOUS: %/streetGraph.obj
-CURL:=curl -\# --create-dirs
+CURL:=curl -L -\# --create-dirs
 
 download: otp.jar
+
+massachusetts/osm.pbf:
+	${CURL} https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf -o $@
+
+boston/osm.pbf: massachusetts/osm.pbf
+	${CURL} https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf -o $@
+
+boston/gtfs.zip:
+	${CURL} https://cdn.mbta.com/MBTA_GTFS.zip -o $@
+
+new-york/osm.pbf:
+	${CURL} https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf -o $@
+
+rochester/osm.pbf: new-york/osm.pbf
+	osmium extract new-york/osm.pbf --polygon rochester/rochester.geojson -o $@
+
+rochester/gtfs.zip:
+	echo "none"
 
 georgia/osm.pbf:
 	${CURL} https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf -o $@
@@ -34,7 +52,7 @@ canton/gtfs.zip:
 	${CURL} https://leonard.io/ibi/cats-2.gtfs.zip -o $@
 
 build-%: otp.jar %/osm.pbf %/gtfs.zip
-	java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 -Xmx12G -jar otp.jar --build $*
+	java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 -jar otp.jar --build $*
 
 run-%: otp.jar
 	java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 -jar otp.jar --server --basePath ./ --router $* --insecure

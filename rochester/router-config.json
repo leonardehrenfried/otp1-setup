@@ -1,0 +1,12 @@
+{
+  "updaters": [
+    {
+      "type": "vehicle-rental-updater",
+      "frequencySec": 30,
+      "sourceType": "gbfs",
+      "network": "HOPR",
+      "url": "https://gbfs.hopr.city/api/gbfs/32/"
+    }
+
+  ]
+}
